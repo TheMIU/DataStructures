@@ -23,7 +23,7 @@ public class Demo {
         stack.push(50);
 
         stack.printStack(); // [ 10, 20, 30, 40, 50]
-        stack.size(); // Length : 5
+        System.out.println("Size : " + stack.size()); // Size : 5
 
         System.out.println(stack.isEmpty()); // false
         System.out.println(stack.isFull()); // true
@@ -31,7 +31,7 @@ public class Demo {
         stack.clear();
 
         stack.printStack(); // Empty stack
-        stack.size(); // Length : 0
+        System.out.println("Size : " + stack.size()); // Size : 0
 
         System.out.println(stack.isEmpty()); // true
         System.out.println(stack.isFull()); // false
@@ -46,6 +46,6 @@ public class Demo {
         stack.push(60); // Stack size increased
 
         stack.printStack(); // [ 10, 20, 30, 40, 50, 60 ]
-        stack.size(); // Length : 6
+        System.out.println("Size : " + stack.size()); // Size : 6
     }
 }

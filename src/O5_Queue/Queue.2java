@@ -1,0 +1,111 @@
+package O5_Queue;
+
+// Public Methods
+// =======
+// enQueue
+// deQueue
+// peek
+// printQueue
+// isEmpty
+// isFull
+// size
+// clear
+
+public class Queue {
+    private int[] elementData;
+    private int front;
+    private int rare;
+    private int size;
+
+    public Queue(int initialCapacity) {
+        elementData = new int[initialCapacity];
+        front = -1;
+        rare = -1;
+        size = 0;
+    }
+
+    // enQueue
+    public void enQueue(int data) {
+        if (isFull()) {
+            grow();
+        }
+
+        if (front == -1) {
+            front = 0;
+        }
+        elementData[++rare] = data;
+    }
+
+    // deQueue
+    public int deQueue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty !");
+            return -1;
+        }
+        return (elementData[front++]);
+    }
+
+    // peek
+    public int peek() {
+        if (!isEmpty()) {
+            return elementData[front];
+        }
+        return -1;
+    }
+
+    // print Queue
+    public void printQueue() {
+        if (!isEmpty()) {
+            System.out.print("[ ");
+            for (int i = front; i <= rare; i++) {
+                System.out.print(elementData[i] + ", ");
+            }
+            System.out.println("\b\b ]");
+        } else {
+            System.out.println("Empty Queue");
+        }
+
+    }
+
+    // isEmpty
+    public boolean isEmpty() {
+        return front == -1 || front > rare;
+    }
+
+    // isFull
+    public boolean isFull() {
+        System.out.println(elementData.length);
+        return rare == elementData.length - 1 || front > rare;
+    }
+
+    // size
+    public void size() {
+        if (!isEmpty()) {
+            System.out.println("Size : " + ((rare - front) + 1));
+        } else {
+            System.out.println("Size : 0");
+        }
+    }
+
+    // clear
+    void clear() {
+        front = -1;
+        rare = -1;
+    }
+
+    /////////////////////////////////
+    private void grow() {
+        System.out.println("Queue size increased");
+
+        int[] temp = elementData;
+
+        elementData = new int[elementData.length * 2];
+        System.arraycopy(temp, 0, elementData, 0, temp.length);
+        rare = temp.length - 1;
+        /*
+         * for (int i = 0; i < temp.length; i++) {
+         * elementData[i] = temp[i];
+         * }
+         */
+    }
+}
