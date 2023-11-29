@@ -2,14 +2,14 @@ package O4_Stack;
 
 // Public Methods
 // =======
-// push
-// pop
-// peek / top
-// printStack
 // isEmpty
 // isFull
 // size
+// peek / top
 // clear
+// push
+// pop
+// printStack
 
 public class Stack {
     private int[] elementData;
@@ -37,6 +37,20 @@ public class Stack {
         return size;
     }
 
+    // peek
+    public int peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is Empty");
+        }
+        return elementData[top];
+    }
+
+    // clear
+    public void clear() {
+        top = -1;
+        size = 0;
+    }
+
     // push
     public void push(int data) {
         if (isFull()) {
@@ -53,20 +67,6 @@ public class Stack {
         }
         size--;
         return elementData[top--];
-    }
-
-    // peek
-    public int peek() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Stack is Empty");
-        }
-        return elementData[top];
-    }
-
-    // clear
-    public void clear() {
-        top = -1;
-        size = 0;
     }
 
     // printStack
