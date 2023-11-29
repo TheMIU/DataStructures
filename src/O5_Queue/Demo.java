@@ -8,12 +8,13 @@ public class Demo {
         queue.enQueue(20);
         queue.enQueue(30);
         queue.enQueue(40);
+        queue.enQueue(50);
 
-        queue.printQueue(); // [ 10, 20, 30, 40 ]
+        queue.printQueue(); // [ 10, 20, 30, 40, 50 ]
 
         System.out.println("Removed : " + queue.deQueue()); // Removed : 10
 
-        queue.printQueue(); // [ 20, 30, 40 ]
+        queue.printQueue(); // [ 20, 30, 40, 50 ]
 
         System.out.println("Peek : " + queue.peek()); // Peek : 20
 
@@ -22,7 +23,7 @@ public class Demo {
         queue.enQueue(50);
 
         queue.printQueue(); // [ 20, 30, 40, 50 ]
-        queue.size(); // Length : 4 
+        System.out.println("Size : " + queue.size()); // Size : 4
 
         System.out.println(queue.isEmpty()); // false
         System.out.println(queue.isFull()); // true
@@ -30,7 +31,7 @@ public class Demo {
         queue.clear();
 
         queue.printQueue(); // Empty Queue
-        queue.size(); // Size : 0
+        System.out.println("Size : " + queue.size()); // Size : 0
 
         System.out.println(queue.isEmpty()); // true
         System.out.println(queue.isFull()); // false
@@ -45,6 +46,6 @@ public class Demo {
         queue.enQueue(60); // Queue size increased
 
         queue.printQueue(); // [ 10, 20, 30, 40, 50, 60 ]
-        queue.size(); // Length : 6
+        System.out.println("Size : " + queue.size()); // Size : 6
     }
 }

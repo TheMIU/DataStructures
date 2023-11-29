@@ -1,84 +1,98 @@
 package O5_Queue;
 
+// Public Methods
+// =======
+// isEmpty
+// isFull
+// size
+// peek / top
+// clear
+// enQueue
+// deQueue
+// printQueue
+
 public class Queue {
-    private int[] elements;
+    private int[] elementData;
     private int front;
     private int rear;
     private int size;
 
     public Queue(int initialCapacity) {
-        elements = new int[initialCapacity];
+        elementData = new int[initialCapacity];
         front = 0;
         rear = -1;
         size = 0;
     }
 
+    // isEmpty
     public boolean isEmpty() {
         return size == 0;
     }
 
+    // isFull
     public boolean isFull() {
-        return size == elements.length;
+        return size == elementData.length;
     }
 
+    // size
     public int size() {
         return size;
     }
 
-    public void enQueue(int data) {
-        if (isFull()) {
-            resize();
-        }
-        rear = (rear + 1) % elements.length;
-        elements[rear] = data;
-        size++;
-    }
-
-    public int deQueue() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
-        }
-        int removed = elements[front];
-        front = (front + 1) % elements.length;
-        size--;
-        return removed;
-    }
-
+    // peek / top
     public int peek() {
         if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
+            throw new IllegalStateException("Queue is Empty");
         }
-        return elements[front];
+        return elementData[front];
     }
 
+    // clear
     public void clear() {
         front = 0;
         rear = -1;
         size = 0;
     }
 
-    private void resize() {
-        int newCapacity = elements.length * 2;
-        int[] newElements = new int[newCapacity];
-
-        for (int i = 0; i < size; i++) {
-            newElements[i] = elements[(front + i) % elements.length];
+    // enQueue
+    public void enQueue(int data) {
+        if (isFull()) {
+            grow();
         }
-
-        elements = newElements;
-        front = 0;
-        rear = size - 1;
+        elementData[++rear] = data;
+        size++;
     }
 
+    // deQueue
+    public int deQueue() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is Empty");
+        }
+        size--;
+        return elementData[front++];
+    }
+
+    // printQueue
     public void printQueue() {
         if (isEmpty()) {
             System.out.println("Empty Queue");
             return;
         }
-        System.out.print("Queue: ");
-        for (int i = 0; i < size; i++) {
-            System.out.print(elements[(front + i) % elements.length] + " ");
+        System.out.print("[ ");
+        for (int i = front; i <= rear; i++) {
+            System.out.print(elementData[i] + ", ");
         }
-        System.out.println();
+        System.out.println("\b\b ]");
+    }
+
+    /////////////////////////////////
+    private void grow() {
+        System.out.println("Queue size increased");
+
+        int[] temp = elementData;
+
+        elementData = new int[elementData.length * 2];
+        System.arraycopy(temp, 0, elementData, 0, temp.length);
+        rear = temp.length - 1;
     }
 }

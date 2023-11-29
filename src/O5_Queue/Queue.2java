@@ -1,15 +1,6 @@
 package O5_Queue;
 
-// Public Methods
-// =======
-// enQueue
-// deQueue
-// peek
-// printQueue
-// isEmpty
-// isFull
-// size
-// clear
+
 
 public class Queue {
     private int[] elementData;
