@@ -59,7 +59,8 @@ public class Queue {
         if (isFull()) {
             grow();
         }
-        elementData[++rear] = data;
+        rear = (rear + 1) % elementData.length;
+        elementData[rear] = data;
         size++;
     }
 
@@ -68,8 +69,10 @@ public class Queue {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is Empty");
         }
+        int removed = elementData[front];
+        front = (front + 1) % elementData.length;
         size--;
-        return elementData[front++];
+        return removed;
     }
 
     // printQueue
@@ -79,8 +82,8 @@ public class Queue {
             return;
         }
         System.out.print("[ ");
-        for (int i = front; i <= rear; i++) {
-            System.out.print(elementData[i] + ", ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(elementData[(front + i) % elementData.length] + ", ");
         }
         System.out.println("\b\b ]");
     }
@@ -90,9 +93,13 @@ public class Queue {
         System.out.println("Queue size increased");
 
         int[] temp = elementData;
-
         elementData = new int[elementData.length * 2];
-        System.arraycopy(temp, 0, elementData, 0, temp.length);
-        rear = temp.length - 1;
+
+        for (int i = 0; i < size; i++) {
+            elementData[i] = temp[(front + i) % temp.length];
+        }
+
+        front = 0;
+        rear = size - 1;
     }
 }
